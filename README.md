@@ -45,6 +45,7 @@ Lifecycle methods are part of the React library, and are readily available to cl
         )
     }
 ```
+---
 
 `componentDidMount` is a great method for getting data to your front-end as soon as the component loads on the viewport:
 
