@@ -1,68 +1,83 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Lesson Sections
 
-## Available Scripts
+## Slideshow: https://slides.com/mattbodily/react-three
 
-In the project directory, you can run:
+1. [React 3 Lecture Notes](#React-3-Lecture-Notes)
+1. [React 3 Mini Project](#React-3-Mini-Project)
+1. [React 3 Afternoon Project](#React-3-Afternoon-Project)
 
-### `npm start`
+## Student Learning Objectives
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<details open>
+    <summary>React</summary>
+    <ul>
+        <li>Student understands when componentDidMount fires in the react lifecycle</li>
+    </ul>
+</details>
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## React 3 Lecture Notes
 
-### `npm test`
+#### The Component Lifecycle
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The component lifecycle refers to the 'life' and 'death' of a component on the viewport. There are four main phases to a components lifecycle:
 
-### `npm run build`
+* Initialization - initialization of state and props for the component
+* Mounting - mounting of the component to the viewport (rendering)
+* Updating - updating of a components state or props, triggering a re-render
+* Unmounting - unmounting of the component from the viewport
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+With components having this defined lifecycle, we are able to take advantage of it by using lifecycle methods to enrich our components functionality.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+#### Lifecycle Methods
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Lifecycle methods are part of the React library, and are readily available to class components. Lifecycle methods will be invoked at certain phases of the components lifecycle. While there are many lifecycle methods, some you may use often are:
 
-### `npm run eject`
+* Render - required for class components, invokes during the mounting and updating phases
+* componentDidMount - invokes just after the mounting phase
+* componentDidUpdate - invokes during the updating phase
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+`render` is the only required lifecycle method for class components. It fires after the initialization of state and props, during the mounting phase, and then will re-invoke after any change to state or props, which is the updating phase.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```js
+    render(){
+        return (
+            <div></div>
+        )
+    }
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+`componentDidMount` is a great method for getting data to your front-end as soon as the component loads on the viewport:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```js
+    componentDidMount(){
+        axios.get('https://swapi.co/api/people')
+        .then(res => this.setState({people: res.data}))
+        .catch(err => console.log(err));
+    }
+```
 
-## Learn More
+The above example would request the Star Wars api as soon as the component has finished rendering, and then set the data to state. Note that componentDidMount will only invoke after the first render of the component.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+`componentDidUpdate` will be invoked during the updating phase of the lifecycle, meaning that it won't invoke after the first render of a component (componentDidMount invokes after the first render), but will invoke after each subsequent re-render of the component. componentDidUpdate is able to compare current state and props with previous state and props through passing the arguments prevState and prevProps. To avoid componentDidUpdate invoking infinitely, you often need to include a condition to the method (this is required if the functionality in your componentDidUpdate changes state or props.)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```js
+    componentDidUpdate(prevProps, prevState){
+        if(prevProps.people !== props.people){
+            console.log('componentDidUpdate invoked')
+        }
+    }
+```
 
-### Code Splitting
+# Additional Resources
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+* [React Docs - Components](https://reactjs.org/docs/react-component.html) - React documentation of the component lifecycle and available lifecycle methods.
+* [Medium - Component Lifecycle](https://medium.com/@baphemot/understanding-reactjs-component-life-cycle-823a640b3e8d) - Medium article on the component lifecycle.
 
-### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+# React 3 Mini Project
 
-### Making a Progressive Web App
+https://github.com/DevMountain/react-i-ii-review
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+# React 3 Afternoon Project
 
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+https://github.com/DevMountain/react-i-ii-afternoon
