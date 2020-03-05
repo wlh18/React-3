@@ -45,6 +45,7 @@ Lifecycle methods are part of the React library, and are readily available to cl
         )
     }
 ```
+
 ---
 
 `componentDidMount` is a great method for getting data to your front-end as soon as the component loads on the viewport:
@@ -58,6 +59,8 @@ Lifecycle methods are part of the React library, and are readily available to cl
 ```
 
 The above example would request the Star Wars api as soon as the component has finished rendering, and then set the data to state. Note that componentDidMount will only invoke after the first render of the component.
+
+---
 
 `componentDidUpdate` will be invoked during the updating phase of the lifecycle, meaning that it won't invoke after the first render of a component (componentDidMount invokes after the first render), but will invoke after each subsequent re-render of the component. componentDidUpdate is able to compare current state and props with previous state and props through passing the arguments prevState and prevProps. To avoid componentDidUpdate invoking infinitely, you often need to include a condition to the method (this is required if the functionality in your componentDidUpdate changes state or props.)
 
