@@ -1,10 +1,10 @@
 # Lesson Sections
 
-## Slideshow: https://slides.com/mattbodily/react-three
+Lecture slides: https://slides.com/dmweb/react-3
 
-1. [React 3 Lecture Notes](#React-3-Lecture-Notes)
-1. [React 3 Mini Project](#React-3-Mini-Project)
-1. [React 3 Afternoon Project](#React-3-Afternoon-Project)
+Mini Project: https://github.com/DevMountain/react-i-ii-review
+
+Afternoon project: https://github.com/DevMountain/react-i-ii-afternoon
 
 ## Student Learning Objectives
 
